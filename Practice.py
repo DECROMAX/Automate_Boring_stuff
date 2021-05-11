@@ -28,6 +28,8 @@ try:
 except:
     stock = 'Out of stock'
 
-platform = soup.find_all('span', class_='mainheaders')
+images = [img['href'] for img in soup.find_all('a', id='thumb1')][0]
+image = f'https://www.retrogames.co.uk/{images}'
 
-print(platform)
+desc = soup.find('meta', {'name': 'description'})  # todo cannot apply .text to clean html
+print(desc)
