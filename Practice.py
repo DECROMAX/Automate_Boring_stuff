@@ -28,8 +28,13 @@ try:
 except:
     stock = 'Out of stock'
 
-images = [img['href'] for img in soup.find_all('a', id='thumb1')][0]
-image = f'https://www.retrogames.co.uk/{images}'
+image = [img['href'] for img in soup.find_all('a', id='thumb1')][0]
+image_url = f'https://www.retrogames.co.uk/{image}'
 
-desc = soup.find('meta', {'name': 'description'})  # todo cannot apply .text to clean html
-print(desc)
+desc = soup.find('meta', {'name': 'description'}).get('content')
+
+format = soup.find_all(class_='mainheaders')
+
+for i in format:
+    for text in i:
+        print(text)  # todo need to extarct text from list
